@@ -1250,7 +1250,7 @@ void VoodooSubsequentCPUToScreenAlphaTexture(ScrnInfoPtr pScrn, int dstx, int ds
 			dh = 0;
 		}
 	}	
-	mmio32_w(pVoo, 114, pVoo->lfbMode);
+	mmio32_w(pVoo, 0x114, pVoo->lfbMode);
 	mmio32_w(pVoo, 0x10C, 0);
 }
 
