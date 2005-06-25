@@ -96,7 +96,7 @@ static void	VoodooDisplayPowerManagementSet(ScrnInfoPtr pScrn,
  * this DriverRec be an upper-case version of the driver name.
  */
 
-DriverRec VOODOO = {
+_X_EXPORT DriverRec VOODOO = {
   VERSION,
   VOODOO_DRIVER_NAME,
   VoodooIdentify,
@@ -183,8 +183,11 @@ static pointer voodooSetup(pointer module, pointer opts, int *errmaj, int *errmi
   return NULL;
 }
 
-XF86ModuleData voodooModuleData = { &voodooVersRec, voodooSetup, NULL };
-
+_X_EXPORT XF86ModuleData voodooModuleData = {
+  &voodooVersRec,
+  voodooSetup,
+  NULL
+};
 
 #endif /* XFree86LOADER */
 
