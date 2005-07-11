@@ -33,6 +33,10 @@
  * ANY KIND OR FORM.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include "fb.h"
 #include "mibank.h"
 #include "micmap.h"
