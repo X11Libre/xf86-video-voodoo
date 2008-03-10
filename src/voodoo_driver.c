@@ -265,7 +265,10 @@ VoodooProbe(DriverPtr drv, int flags)
     }
 
     /* PCI BUS */
-    if (xf86GetPciVideoInfo() ) {
+#ifndef XSERVER_LIBPCIACCESS
+    if (xf86GetPciVideoInfo() )
+#endif
+    {
 	numUsed = xf86MatchPciInstances(VOODOO_NAME, PCI_VENDOR_3DFX,
 					VoodooChipsets, VoodooPCIChipsets, 
 					devSections,numDevSections,
