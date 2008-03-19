@@ -39,7 +39,6 @@
  * ANY KIND OR FORM.
  */
 
-/* $XFree86: xc/programs/Xserver/hw/xfree86/drivers/voodoo/voodoo_driver.c,v 1.27 2001/08/07 07:04:46 keithp Exp $ */
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
