@@ -685,6 +685,17 @@ int VoodooHardwareInit(VoodooPtr pVoo)
 }	
 
 /*
+ *     Voodoo exit logic
+ */
+
+void VoodooRestorePassThrough(VoodooPtr pVoo)
+{
+    pci_enable(pVoo, 1, 0, 0);
+    mmio32_w(pVoo, 0x210, 0);
+    pci_enable(pVoo, 0, 0, 1);
+}
+
+/*
  *	Copiers for Voodoo1
  *
  *	Voodoo1 has no CPU to screen blit, and also lacks SGRAM fill
@@ -969,6 +980,9 @@ static void Voodoo2SetupForSolidFill(ScrnInfoPtr pScrn, int color,
 			int rop, unsigned int planemask)
 {
 	VoodooPtr pVoo = VoodooPTR(pScrn);
+	if (debug)
+	    ErrorF("Setup for solid fill colour %04X, rop %d, Mask %04X.\n",
+		   color, rop, planemask);
 	Voodoo2Setup2D(pVoo);
 	mmio32_w_chuck(pVoo, 0x2EC, ropxlate[rop]); 	/* rop */
 	mmio32_w_chuck(pVoo, 0x2F0, color);		/* fg color */
@@ -979,6 +993,8 @@ static void Voodoo2SubsequentSolidFillRect(ScrnInfoPtr pScrn, int x, int y,
 			int w, int h)
 {
 	VoodooPtr pVoo = VoodooPTR(pScrn);
+	if (debug)
+	    ErrorF("Fill (%d, %d) for (%d, %d)\n", x, y, w, h);
 	wait_idle(pVoo);
 	mmio32_w_chuck(pVoo, 0x2E4, (y<<16) | x);	/* Dst x,y */
 	/* Set size and fire */

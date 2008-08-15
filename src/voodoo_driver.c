@@ -110,12 +110,14 @@ _X_EXPORT DriverRec VOODOO = {
 
 typedef enum {
   OPTION_NOACCEL,
-  OPTION_SHADOW_FB
+  OPTION_SHADOW_FB,
+  OPTION_PASS_THROUGH,
 } VoodooOpts;
 
 static const OptionInfoRec VoodooOptions[] = {
   { OPTION_NOACCEL,	"NoAccel",	OPTV_BOOLEAN,	{0}, FALSE },
   { OPTION_SHADOW_FB,	"ShadowFB",	OPTV_BOOLEAN,	{0}, FALSE },
+  { OPTION_PASS_THROUGH,"PassThrough",  OPTV_BOOLEAN,   {0}, FALSE },
   { -1,	                NULL,           OPTV_NONE,      {0}, FALSE }
 };
 
@@ -436,6 +438,9 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   	pVoo->Accel = 0;
   }
   
+  if (xf86ReturnOptValBool(pVoo->Options, OPTION_PASS_THROUGH,  FALSE))
+      pVoo->PassThrough = 1;
+
   if (xf86ReturnOptValBool(pVoo->Options, OPTION_NOACCEL, FALSE)) {
   	pVoo->ShadowFB = 1;
   	pVoo->Accel = 0;
@@ -544,6 +549,7 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   }
 
   /* Set the current mode to the first in the list */
+  xf86SetCrtcForModes(pScrn, 0);
   pScrn->currentMode = pScrn->modes;
 
   /* Do some checking, we will not support a virtual framebuffer larger than
@@ -914,8 +920,10 @@ VoodooRestore(ScrnInfoPtr pScrn, Bool Closing)
 
   pVoo = VoodooPTR(pScrn);
   pVoo->Blanked = TRUE;
-  if (!Closing || !(pVoo->OnAtExit))
-    VoodooBlank(pVoo);
+  if (!Closing)
+      VoodooBlank(pVoo);
+  if (Closing && pVoo->PassThrough)
+      VoodooRestorePassThrough(pVoo);
 }
 
 static void
