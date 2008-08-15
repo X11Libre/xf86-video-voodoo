@@ -50,7 +50,7 @@
 #include "mipointer.h"
 #include "xf86.h"
 #include "xf86_OSproc.h"
-#include "xf86Version.h"
+#include "xorgVersion.h"
 #include "xf86PciInfo.h"
 #include "xf86Pci.h"
 #include "xf86cmap.h"
@@ -163,7 +163,7 @@ static XF86ModuleVersionInfo voodooVersRec =
   MODULEVENDORSTRING,
   MODINFOSTRING1,
   MODINFOSTRING2,
-  XF86_VERSION_CURRENT,
+  XORG_VERSION_CURRENT,
   VOODOO_MAJOR_VERSION, VOODOO_MINOR_VERSION, VOODOO_PATCHLEVEL,
   ABI_CLASS_VIDEODRV,			/* This is a video driver */
   ABI_VIDEODRV_VERSION,
