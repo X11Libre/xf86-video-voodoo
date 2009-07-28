@@ -56,8 +56,10 @@
 #include "xf86cmap.h"
 #include "shadowfb.h"
 #include "vgaHW.h"
+#ifndef XSERVER_LIBPCIACCESS
 #include "xf86RAC.h"
 #include "xf86Resources.h"
+#endif
 #include "compiler.h"
 #include "xaa.h"
 

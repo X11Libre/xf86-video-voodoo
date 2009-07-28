@@ -47,8 +47,6 @@
 #include "xf86cmap.h"
 #include "shadowfb.h"
 #include "vgaHW.h"
-#include "xf86RAC.h"
-#include "xf86Resources.h"
 #include "compiler.h"
 #include "xaa.h"
 #include "dgaproc.h"
