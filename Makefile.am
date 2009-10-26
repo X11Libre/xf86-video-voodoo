@@ -22,3 +22,9 @@ AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src man
 
 EXTRA_DIST = TODO
+.PHONY: ChangeLog
+
+ChangeLog:
+	$(CHANGELOG_CMD)
+
+dist-hook: ChangeLog
