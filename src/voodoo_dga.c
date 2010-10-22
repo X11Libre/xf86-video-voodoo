@@ -136,7 +136,7 @@ static void VoodooDGAAddModes(ScrnInfoPtr pScrn)
     DGAModePtr pDGAMode;
 
     do {
-	pDGAMode = xrealloc(pVoo->pDGAMode,
+	pDGAMode = realloc(pVoo->pDGAMode,
 			    (pVoo->nDGAMode + 1) * sizeof(DGAModeRec));
 	if (!pDGAMode)
 	    break;

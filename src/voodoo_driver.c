@@ -195,7 +195,7 @@ VoodooFreeRec(ScrnInfoPtr pScrn)
 {
   if (pScrn->driverPrivate == NULL)
     return;
-  xfree(pScrn->driverPrivate);
+  free(pScrn->driverPrivate);
   pScrn->driverPrivate = NULL;
 }
 
@@ -278,10 +278,10 @@ VoodooProbe(DriverPtr drv, int flags)
 		}
 		pEnt = xf86GetEntityInfo(usedChips[i]);
 	    }
-	    xfree(usedChips);
+	    free(usedChips);
 	}
     }
-    xfree(devSections);
+    free(devSections);
     return foundScreen;
 }
 	
@@ -389,7 +389,7 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   xf86CollectOptions(pScrn, NULL);
 
   /* Process the options */
-  if (!(pVoo->Options = xalloc(sizeof(VoodooOptions))))
+  if (!(pVoo->Options = malloc(sizeof(VoodooOptions))))
     return FALSE;
   memcpy(pVoo->Options, VoodooOptions, sizeof(VoodooOptions));
   xf86ProcessOptions(pScrn->scrnIndex, pScrn->options, pVoo->Options);
@@ -768,11 +768,11 @@ VoodooCloseScreen(int scrnIndex, ScreenPtr pScreen)
   if (pScrn->vtSema)
       VoodooRestore(pScrn, TRUE);
   if(pVoo->ShadowPtr)
-      xfree(pVoo->ShadowPtr);
+      free(pVoo->ShadowPtr);
   if(pVoo->AccelInfoRec)
-      xfree(pVoo->AccelInfoRec);
+      free(pVoo->AccelInfoRec);
   if (pVoo->pDGAMode) {
-    xfree(pVoo->pDGAMode);
+    free(pVoo->pDGAMode);
     pVoo->pDGAMode = NULL;
     pVoo->nDGAMode = 0;
   }
@@ -797,7 +797,7 @@ VoodooFreeScreen(int scrnIndex, int flags)
    * get called routinely at the end of a server generation.
    */
   if (pVoo && pVoo->ShadowPtr)
-    xfree(pVoo->ShadowPtr);
+    free(pVoo->ShadowPtr);
   VoodooFreeRec(xf86Screens[scrnIndex]);
 }
 
