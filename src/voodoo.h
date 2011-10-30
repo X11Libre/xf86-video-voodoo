@@ -102,7 +102,7 @@ extern void Voodoo2XAAInit(ScreenPtr pScreen);
 extern void VoodooSync(ScrnInfoPtr pScrn);
 extern void VoodooReadBank(ScreenPtr pScreen, int bank);
 extern void VoodooWriteBank(ScreenPtr pScreen, int bank);
-extern void VoodooReadBank(ScreenPtr pScreen, int bank);
+extern void VoodooRestorePassThrough(VoodooPtr pVoo);
 
 /*
  *	DGA
