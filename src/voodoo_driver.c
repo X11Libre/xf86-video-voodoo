@@ -561,8 +561,9 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   }
 
   if (!xf86LoadSubModule(pScrn, "xaa")) {
-    VoodooFreeRec(pScrn);
-    return FALSE;
+      xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Falling back to shadowfb\n");
+      pVoo->Accel = 0;
+      pVoo->ShadowFB = 1;
   }
   
   if(pVoo->ShadowFB)
