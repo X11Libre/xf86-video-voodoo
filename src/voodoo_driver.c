@@ -54,7 +54,6 @@
 #include "xf86Pci.h"
 #include "xf86cmap.h"
 #include "shadowfb.h"
-#include "vgaHW.h"
 #if GET_ABI_MAJOR(ABI_VIDEODRV_VERSION) < 6
 #include "xf86RAC.h"
 #include "xf86Resources.h"
