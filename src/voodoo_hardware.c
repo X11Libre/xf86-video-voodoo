@@ -811,7 +811,7 @@ void VoodooClear(VoodooPtr pVoo)
  
 void VoodooReadBank(ScreenPtr pScreen, int bank)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	if(bank)
 	{
@@ -828,7 +828,7 @@ void VoodooReadBank(ScreenPtr pScreen, int bank)
 
 void VoodooWriteBank(ScreenPtr pScreen, int bank)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	if(bank)
 	{
@@ -846,7 +846,7 @@ void VoodooWriteBank(ScreenPtr pScreen, int bank)
 #if 0
 static void VoodooReadWriteBank(ScreenPtr pScreen, int bank)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	if(bank)
 	{
@@ -1389,7 +1389,7 @@ CARD32 VoodooTextureFormats[3] = {PICT_a8r8g8b8, PICT_x8r8g8b8, 0};
 
 void Voodoo2XAAInit(ScreenPtr pScreen)
 {
-	ScrnInfoPtr pScrn = xf86Screens[pScreen->myNum];
+	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	XAAInfoRecPtr pAccel = XAACreateInfoRec();
 	BoxRec cacheArea;
