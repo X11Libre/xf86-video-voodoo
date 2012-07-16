@@ -47,7 +47,6 @@
 #include "xf86cmap.h"
 #include "shadowfb.h"
 #include "vgaHW.h"
-#include "xaa.h"
 #include "compiler.h"
 
 #include "voodoo.h"
@@ -67,7 +66,7 @@
 
 #include <unistd.h>
 
-
+#ifdef HAVE_XAA_H
 #if 0
 static void VoodooReadWriteBank(ScreenPtr pScreen, int bank);
 #endif
@@ -82,7 +81,7 @@ static Bool VoodooSetupForCPUToScreenTexture(ScrnInfoPtr pScrn, int op,
 static void VoodooSubsequentCPUToScreenTexture(ScrnInfoPtr pScrn,
 	int dstx, int dsty, int srcx, int srcy, int width, int height);
 
-
+#endif
 static int debug = 0;
 
 /*
@@ -920,6 +919,7 @@ void VoodooSync(ScrnInfoPtr pScrn)
 	mmio32_w(pVoo, 0x10C, 0);	/* Maybe flag this */
 }
 
+#ifdef HAVE_XAA_H
 static void Voodoo2Setup2D(VoodooPtr pVoo)
 {
 	wait_idle(pVoo);
@@ -1386,9 +1386,11 @@ CARD32 VoodooAlphaTextureFormats[2] = {PICT_a8, 0};
 CARD32 VoodooTextureFormats[3] = {PICT_a8r8g8b8, PICT_x8r8g8b8, 0};
 
 #endif
+#endif
 
 void Voodoo2XAAInit(ScreenPtr pScreen)
 {
+#ifdef HAVE_XAA_H
 	ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	XAAInfoRecPtr pAccel = XAACreateInfoRec();
@@ -1472,4 +1474,5 @@ void Voodoo2XAAInit(ScreenPtr pScreen)
 		ErrorF("Unable to set up acceleration.\n");
 		
 	Voodoo2DisableClipping(pScrn);
+#endif
 }

@@ -13,7 +13,9 @@ typedef struct {
   CARD8 *             ShadowPtr;	/* Shadow buffer */
   CARD32              ShadowPitch;
   CloseScreenProcPtr  CloseScreen;	/* Wrapped Close */
+#ifdef HAVE_XAA_H
   XAAInfoRecPtr	      AccelInfoRec;	/* Cached Accel rec for close */
+#endif
   Bool                Blanked;
   Bool                PassThrough;     /* Set to restore pass through on exit */
   EntityInfoPtr       pEnt;

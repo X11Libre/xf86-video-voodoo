@@ -59,7 +59,6 @@
 #include "xf86Resources.h"
 #endif
 #include "compiler.h"
-#include "xaa.h"
 
 #include "voodoo.h"
 
@@ -769,8 +768,10 @@ VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL)
       VoodooRestore(pScrn, TRUE);
   if(pVoo->ShadowPtr)
       free(pVoo->ShadowPtr);
+#ifdef HAVE_XAA_H
   if(pVoo->AccelInfoRec)
       free(pVoo->AccelInfoRec);
+#endif
   if (pVoo->pDGAMode) {
     free(pVoo->pDGAMode);
     pVoo->pDGAMode = NULL;

@@ -47,7 +47,6 @@
 #include "shadowfb.h"
 #include "vgaHW.h"
 #include "compiler.h"
-#include "xaa.h"
 #include "dgaproc.h"
 
 #include "voodoo.h"
