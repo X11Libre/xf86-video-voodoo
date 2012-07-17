@@ -49,6 +49,10 @@
 #include "vgaHW.h"
 #include "compiler.h"
 
+#ifdef HAVE_XAA_H
+#include "xaa.h"
+#endif
+
 #include "voodoo.h"
 
 #include <X11/extensions/xf86dgaproto.h>

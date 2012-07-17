@@ -48,7 +48,9 @@
 #include "vgaHW.h"
 #include "compiler.h"
 #include "dgaproc.h"
-
+#ifdef HAVE_XAA_H
+#include "xaa.h"
+#endif
 #include "voodoo.h"
 
 #define _XF86DGA_SERVER_

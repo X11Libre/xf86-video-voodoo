@@ -59,7 +59,9 @@
 #include "xf86Resources.h"
 #endif
 #include "compiler.h"
-
+#ifdef HAVE_XAA_H
+#include "xaa.h"
+#endif
 #include "voodoo.h"
 
 #define _XF86DGA_SERVER_
