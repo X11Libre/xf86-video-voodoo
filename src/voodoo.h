@@ -90,8 +90,9 @@ typedef struct {
 #define VOODOO_MINOR_VERSION 1
 #define VOODOO_PATCHLEVEL 0
 
-#define PCI_CHIP_VOODOO1	0x0001
-#define PCI_CHIP_VOODOO2	0x0002
+#define PCI_VENDOR_3DFX			0x121A
+#define PCI_CHIP_VOODOO1		0x0001 /* PCI_CHIP_VOODOO_GRAPHICS */
+#define PCI_CHIP_VOODOO2		0x0002
 
 /*
  *	Hardware functions
