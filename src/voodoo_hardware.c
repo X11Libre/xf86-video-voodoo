@@ -120,7 +120,7 @@ static void mmio32_w_chuck(VoodooPtr pVoo, int reg, CARD32 val)
 }
 
 /*
- *	Size the video RAM. Texture ram sizing is different and seperate
+ *	Size the video RAM. Texture ram sizing is different and separate
  *	but we don't use the texture ram for 2D anyway.
  */
  
@@ -785,7 +785,7 @@ void VoodooClear(VoodooPtr pVoo)
 	
 	mmio32_w(pVoo, 0x118, pVoo->Width);
 	mmio32_w(pVoo, 0x11C, pVoo->Height << 16);
-	/* On entry we know Clip is set correctly so we wil clear the lot */
+	/* On entry we know Clip is set correctly so we will clear the lot */
 	mmio32_w(pVoo, 0x148, 0xC0C0C0);	/* RGB888 black */
 	mmio32_w(pVoo, 0x130, 0xFFFF);	/* I think ?? */
 	/* We want to write to screen and depth, front buffer, and no dither */
@@ -805,7 +805,7 @@ void VoodooClear(VoodooPtr pVoo)
  *
  *	There are two banks. Bank 0 is the front buffer, bank 1 is the
  *	back buffer. We don't use the aux buffer. Additionally the
- *	back bufer in 1024x768 with 2Mbyte cards is only a partial buffer.
+ *	back buffer in 1024x768 with 2Mbyte cards is only a partial buffer.
  *	(No SLI yet)
  *
  *	Not yet used (TODO: figure out the offsets for the backbuffer layout)
@@ -959,7 +959,7 @@ static void Voodoo2SubsequentScreenToScreenCopy(ScrnInfoPtr pScrn,
 {
 	VoodooPtr pVoo = VoodooPTR(pScrn);
 	wait_idle(pVoo);
-	/* Adjust co-ordinates for backward blits */
+	/* Adjust coordinates for backward blits */
 	height --;	/* Adjust for fenceposting in the hardware */
 	width --;
 	if(pVoo->BlitDirY < 0)

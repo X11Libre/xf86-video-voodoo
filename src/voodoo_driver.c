@@ -5,7 +5,7 @@
  * accelerations that Glide does not expose.  The Voodoo 2 hardware has
  * bit blit (screen->screen, cpu->screen), some colour expansion and 
  * also alpha (so could do hw render even!). Also can in theory use
- * texture ram and engine to do arbitary Xv support as we have
+ * texture ram and engine to do arbitrary Xv support as we have
  * colour match on the 2D blit (ie 3D blit to back, 2D blit to front)
  * along with alpha on the Xv 8) and with some care rotation of Xv.
  * 
@@ -99,7 +99,7 @@ static void	VoodooDisplayPowerManagementSet(ScrnInfoPtr pScrn,
 /* 
  * This contains the functions needed by the server after loading the
  * driver module.  It must be supplied, and gets added the driver list by
- * the Module Setup funtion in the dynamic case.  In the static case a
+ * the Module Setup function in the dynamic case.  In the static case a
  * reference to this is compiled in, and this requires that the name of
  * this DriverRec be an upper-case version of the driver name.
  */

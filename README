@@ -45,7 +45,7 @@ Voodoo2 and later
 	CPU to screen blit
 	Ultra fast fill to some alignments
 	Monochrome to colour expansion (cpu to screen only)
-	(and they finally made the 2D and 3D state independant
+	(and they finally made the 2D and 3D state independent
 	 if someone ever gets drunk enough to do DRI...)
 	Colour conversion on blit
 	Dither
