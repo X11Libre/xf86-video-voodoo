@@ -63,7 +63,10 @@ PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
                   HAVE_XEXTPROTO_71="no")
 AM_CONDITIONAL(HAVE_XEXTPROTO_71, [ test "$HAVE_XEXTPROTO_71" = "yes" ])
 
-# Checks for libraries.
+# Checks for library functions
+# We don't use strlcat, strlcpy, or timingsafe_memcmp, but check to quiet
+# -Wredundant-decls warning from xorg/os.h which will otherwise redefine them.
+AC_CHECK_FUNCS([strlcat strlcpy timingsafe_memcmp])
 
 SAVE_CPPFLAGS="$CPPFLAGS"
 CPPFLAGS="$CPPFLAGS $XORG_CFLAGS"
