@@ -834,7 +834,6 @@ static Bool
 VoodooModeInit(ScrnInfoPtr pScrn, DisplayModePtr mode)
 {
   VoodooPtr pVoo;
-  int width, height;
 
   pVoo = VoodooPTR(pScrn);
 
@@ -859,9 +858,6 @@ VoodooModeInit(ScrnInfoPtr pScrn, DisplayModePtr mode)
     xf86DrvMsg(pScrn->scrnIndex, X_ERROR, "Interlaced/doublescan modes not supported\n");
     return FALSE;
   }
-
-  width = mode->HDisplay;
-  height = mode->VDisplay;
 
   /* Initialize the video card */
   if(VoodooMode(pScrn, mode))
