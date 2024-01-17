@@ -90,7 +90,6 @@ static Bool VoodooDGAOpenFramebuffer(ScrnInfoPtr pScrn, char **DeviceName,
 static Bool VoodooDGASetMode(ScrnInfoPtr pScrn, DGAModePtr pDGAMode)
 {
     DisplayModePtr pMode;
-    int scrnIdx = pScrn->pScreen->myNum;
 
     if (pDGAMode) {
 	pMode = pDGAMode->mode;

@@ -84,8 +84,8 @@ static Bool VoodooSetupForCPUToScreenTexture(ScrnInfoPtr pScrn, int op,
 static void VoodooSubsequentCPUToScreenTexture(ScrnInfoPtr pScrn,
 	int dstx, int dsty, int srcx, int srcy, int width, int height);
 
-#endif
 static int debug = 0;
+#endif
 
 /*
  *	Big endian might need to byteswap these ?
@@ -866,6 +866,7 @@ static void VoodooReadWriteBank(ScreenPtr pScreen, int bank)
 }
 #endif
 
+#ifdef HAVE_XAA_H
 /*
  *	We normally want to load all four rop variants at once so
  *	the table is the 16bits for the lot equal.
@@ -912,6 +913,7 @@ static CARD16 tropxlate[16] = {
 	0xAA77,		/* GXnand */
 	0xAAFF		/* GXset */
 };
+#endif
 
 	
 void VoodooSync(ScrnInfoPtr pScrn)
