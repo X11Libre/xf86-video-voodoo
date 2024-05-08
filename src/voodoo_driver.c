@@ -627,7 +627,7 @@ VoodooScreenInit(SCREEN_INIT_ARGS_DECL)
   if(pVoo->ShadowFB)
   {
     pVoo->ShadowPitch = ((pScrn->virtualX * pScrn->bitsPerPixel >> 3) + 3) & ~3L;
-    pVoo->ShadowPtr = xnfalloc(pVoo->ShadowPitch * pScrn->virtualY);
+    pVoo->ShadowPtr = XNFalloc(pVoo->ShadowPitch * pScrn->virtualY);
     FBStart = pVoo->ShadowPtr;
     displayWidth = pScrn->virtualX;
   }
