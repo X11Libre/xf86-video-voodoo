@@ -182,7 +182,7 @@ VoodooGetRec(ScrnInfoPtr pScrn)
   if (pScrn->driverPrivate != NULL)
     return TRUE;
 
-  pScrn->driverPrivate = xnfcalloc(sizeof(VoodooRec), 1);
+  pScrn->driverPrivate = XNFcallocarray(sizeof(VoodooRec), 1);
 
   /* Initialize it */
   /* No init here yet */
@@ -480,7 +480,7 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
 
   /* Set up clock ranges so that the xf86ValidateModes() function will not fail a mode because of the clock
      requirement (because we don't use the clock value anyway) */
-  clockRanges = xnfcalloc(sizeof(ClockRange), 1);
+  clockRanges = XNFcallocarray(sizeof(ClockRange), 1);
   clockRanges->next = NULL;
   clockRanges->minClock = 10000;
   clockRanges->maxClock = 250000;	/* 250MHz DAC */
