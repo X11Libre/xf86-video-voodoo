@@ -13,9 +13,6 @@ typedef struct {
   CARD8 *             ShadowPtr;	/* Shadow buffer */
   CARD32              ShadowPitch;
   CloseScreenProcPtr  CloseScreen;	/* Wrapped Close */
-#ifdef HAVE_XAA_H
-  XAAInfoRecPtr	      AccelInfoRec;	/* Cached Accel rec for close */
-#endif
   Bool                Blanked;
   Bool                PassThrough;     /* Set to restore pass through on exit */
   EntityInfoPtr       pEnt;
@@ -32,9 +29,6 @@ typedef struct {
   CARD32	      Height;   	/* Current height */
   CARD32	      FullHeight;	/* Height including pixmap cache */
   CARD32	      Tiles;		/* 32 tile count */
-  
-  int		      BlitDirX;		/* Cache blitter direction */
-  int		      BlitDirY;		/* Cache blitter direction */
   
   CARD32	      lfbMode;		/* Cached lfbMode value */
 
@@ -71,9 +65,6 @@ typedef struct {
 
   PLLClock	      vClock;
   PLLClock	      gClock;
-  
-  unsigned char	      LineBuffer[1028];	/* Draw buffer */
-  unsigned char       *LinePtr;		/* To keep XAA amused */  
 } VoodooRec, *VoodooPtr;
 
 #define TRUE 1
@@ -105,7 +96,6 @@ extern int VoodooHardwareInit(VoodooPtr pVoo);
 extern int VoodooMode(ScrnInfoPtr pScrn, DisplayModePtr mode);
 extern void VoodooBlank(VoodooPtr pVoo);
 extern int VoodooMemorySize(VoodooPtr pVoo);
-extern void Voodoo2XAAInit(ScreenPtr pScreen);
 extern void VoodooSync(ScrnInfoPtr pScrn);
 extern void VoodooReadBank(ScreenPtr pScreen, int bank);
 extern void VoodooWriteBank(ScreenPtr pScreen, int bank);

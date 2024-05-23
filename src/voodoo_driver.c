@@ -54,9 +54,6 @@
 #include "xf86cmap.h"
 #include "shadowfb.h"
 #include "compiler.h"
-#ifdef HAVE_XAA_H
-#include "xaa.h"
-#endif
 #include "voodoo.h"
 
 #define _XF86DGA_SERVER_
@@ -555,11 +552,10 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
     return FALSE;
   }
 
-  if (!xf86LoadSubModule(pScrn, "xaa")) {
-      xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Falling back to shadowfb\n");
-      pVoo->Accel = 0;
-      pVoo->ShadowFB = 1;
-  }
+  /* No acceleration support since XAA was removed */
+  xf86DrvMsg(pScrn->scrnIndex, X_INFO, "Falling back to shadowfb\n");
+  pVoo->Accel = 0;
+  pVoo->ShadowFB = 1;
   
   if(pVoo->ShadowFB)
   {
@@ -672,9 +668,6 @@ VoodooScreenInit(SCREEN_INIT_ARGS_DECL)
     VoodooDGAInit(pScrn, pScreen);
 
   /* Activate accelerations */
-  if(pVoo->Accel)
-  	Voodoo2XAAInit(pScreen);
-
   xf86SetBackingStore(pScreen);
   
 
@@ -764,10 +757,6 @@ VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL)
       VoodooRestore(pScrn, TRUE);
   if(pVoo->ShadowPtr)
       free(pVoo->ShadowPtr);
-#ifdef HAVE_XAA_H
-  if(pVoo->AccelInfoRec)
-      free(pVoo->AccelInfoRec);
-#endif
   if (pVoo->pDGAMode) {
     free(pVoo->pDGAMode);
     pVoo->pDGAMode = NULL;
