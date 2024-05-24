@@ -83,7 +83,6 @@ if test "x$XSERVER_LIBPCIACCESS" = xyes; then
 fi
 AM_CONDITIONAL(XSERVER_LIBPCIACCESS, test "x$XSERVER_LIBPCIACCESS" = xyes)
 
-
 AC_SUBST([moduledir])
 
 DRIVER_NAME=voodoo
