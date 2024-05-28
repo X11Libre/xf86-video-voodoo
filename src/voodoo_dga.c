@@ -96,7 +96,7 @@ static Bool VoodooDGASetMode(ScrnInfoPtr pScrn, DGAModePtr pDGAMode)
 	    return TRUE;
     }
 
-    if (!(*pScrn->SwitchMode)(SWITCH_MODE_ARGS(pScrn, pMode)))
+    if (!(*pScrn->SwitchMode)(pScrn, pMode))
 	return FALSE;
     return TRUE;
 }

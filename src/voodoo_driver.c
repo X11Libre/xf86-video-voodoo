@@ -72,15 +72,15 @@ static const OptionInfoRec * VoodooAvailableOptions(int chipid, int busid);
 static void	VoodooIdentify(int flags);
 static Bool	VoodooProbe(DriverPtr drv, int flags);
 static Bool	VoodooPreInit(ScrnInfoPtr pScrn, int flags);
-static Bool	VoodooScreenInit(SCREEN_INIT_ARGS_DECL);
-static Bool	VoodooEnterVT(VT_FUNC_ARGS_DECL);
-static void	VoodooLeaveVT(VT_FUNC_ARGS_DECL);
-static Bool	VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL);
+static Bool	VoodooScreenInit(ScreenPtr pScreen, int argc, char **argv);
+static Bool	VoodooEnterVT(ScrnInfoPtr pScrn);
+static void	VoodooLeaveVT(ScrnInfoPtr pScrn);
+static Bool	VoodooCloseScreen(ScreenPtr pScreen);
 static Bool	VoodooSaveScreen(ScreenPtr pScreen, int mode);
-static void     VoodooFreeScreen(FREE_SCREEN_ARGS_DECL);
+static void     VoodooFreeScreen(ScrnInfoPtr arg);
 static void     VoodooRefreshArea16(ScrnInfoPtr pScrn, int num, BoxPtr pbox);
 static void     VoodooRefreshArea24(ScrnInfoPtr pScrn, int num, BoxPtr pbox);
-static Bool	VoodooSwitchMode(SWITCH_MODE_ARGS_DECL);
+static Bool	VoodooSwitchMode(ScrnInfoPtr pScrn, DisplayModePtr mode);
 static Bool     VoodooModeInit(ScrnInfoPtr pScrn, DisplayModePtr mode);
 static void     VoodooRestore(ScrnInfoPtr pScrn, Bool Closing);
 
@@ -572,7 +572,7 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
 /* Mandatory */
 /* This gets called at the start of each server generation */
 static Bool
-VoodooScreenInit(SCREEN_INIT_ARGS_DECL)
+VoodooScreenInit(ScreenPtr pScreen, int argc, char **argv)
 {
   ScrnInfoPtr pScrn;
   VoodooPtr pVoo;
@@ -718,9 +718,8 @@ VoodooScreenInit(SCREEN_INIT_ARGS_DECL)
 
 /* Mandatory */
 static Bool
-VoodooEnterVT(VT_FUNC_ARGS_DECL)
+VoodooEnterVT(ScrnInfoPtr pScrn)
 {
-  SCRN_INFO_PTR(arg);
   return VoodooModeInit(pScrn, pScrn->currentMode);
 }
 
@@ -733,9 +732,8 @@ VoodooEnterVT(VT_FUNC_ARGS_DECL)
 
 /* Mandatory */
 static void
-VoodooLeaveVT(VT_FUNC_ARGS_DECL)
+VoodooLeaveVT(ScrnInfoPtr pScrn)
 {
-  SCRN_INFO_PTR(arg);
   VoodooRestore(pScrn, FALSE);
 }
 
@@ -748,7 +746,7 @@ VoodooLeaveVT(VT_FUNC_ARGS_DECL)
 
 /* Mandatory */
 static Bool
-VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL)
+VoodooCloseScreen(ScreenPtr pScreen)
 {
   ScrnInfoPtr pScrn = xf86ScreenToScrn(pScreen);
   VoodooPtr pVoo = VoodooPTR(pScrn);
@@ -766,7 +764,7 @@ VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL)
   pScrn->vtSema = FALSE;
 
   pScreen->CloseScreen = pVoo->CloseScreen;
-  return (*pScreen->CloseScreen)(CLOSE_SCREEN_ARGS);
+  return (*pScreen->CloseScreen)(pScreen);
 }
 
 
@@ -774,9 +772,8 @@ VoodooCloseScreen(CLOSE_SCREEN_ARGS_DECL)
 
 /* Optional */
 static void
-VoodooFreeScreen(FREE_SCREEN_ARGS_DECL)
+VoodooFreeScreen(ScrnInfoPtr pScrn)
 {
-  SCRN_INFO_PTR(arg);
   VoodooPtr pVoo = VoodooPTR(pScrn);
   /*
    * This only gets called when a screen is being deleted.  It does not
@@ -860,9 +857,8 @@ VoodooModeInit(ScrnInfoPtr pScrn, DisplayModePtr mode)
  *	this is needed but it does no harm.
  */
  
-static Bool VoodooSwitchMode(SWITCH_MODE_ARGS_DECL)
+static Bool VoodooSwitchMode(ScrnInfoPtr pScrn, DisplayModePtr mode)
 {
-  SCRN_INFO_PTR(arg);
   VoodooSync(pScrn);
   return VoodooModeInit(pScrn, mode);
 }

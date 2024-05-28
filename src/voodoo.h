@@ -1,8 +1,6 @@
 #include "voodoo_pcirename.h"
 #include <string.h>
 
-#include "compat-api.h"
-
 typedef struct {
   CARD32		m;
   CARD32		n;
