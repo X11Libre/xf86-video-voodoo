@@ -59,7 +59,6 @@
 #define _XF86DGA_SERVER_
 #include <X11/extensions/xf86dgaproto.h>
 
-#include "opaque.h"
 #ifdef HAVE_XEXTPROTO_71
 #include <X11/extensions/dpmsconst.h>
 #else
