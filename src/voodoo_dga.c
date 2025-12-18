@@ -32,10 +32,7 @@
  * THIS SOFTWARE IS NOT DESIGNED FOR USE IN SAFETY CRITICAL SYSTEMS OF
  * ANY KIND OR FORM.
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include "fb.h"
 #include "micmap.h"

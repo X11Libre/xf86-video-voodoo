@@ -33,10 +33,7 @@
  *		http://www.machinaesupremacy.com
  *		http://www.magnatune.com
  */
-
-#ifdef HAVE_CONFIG_H
 #include "config.h"
-#endif
 
 #include "fb.h"
 #include "micmap.h"
