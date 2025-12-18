@@ -114,8 +114,6 @@ static SymTabRec VoodooChipsets[] = {
   {-1, NULL }
 };
 
-#ifdef XFree86LOADER
-
 static XF86ModuleVersionInfo voodooVersRec =
 {
   "voodoo",
@@ -149,8 +147,6 @@ _X_EXPORT XF86ModuleData voodooModuleData = {
   voodooSetup,
   NULL
 };
-
-#endif /* XFree86LOADER */
 
 static Bool
 VoodooGetRec(ScrnInfoPtr pScrn)
