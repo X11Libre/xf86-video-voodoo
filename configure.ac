@@ -60,13 +60,6 @@ XORG_DRIVER_CHECK_EXT(DPMSExtension, xextproto)
 # Obtain compiler/linker options for the driver dependencies
 PKG_CHECK_MODULES(XORG, [xorg-server >= 1.18 xproto fontsproto xf86dgaproto $REQUIRED_MODULES])
 PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1])
-
-SAVE_CPPFLAGS="$CPPFLAGS"
-CPPFLAGS="$CPPFLAGS $XORG_CFLAGS"
-AC_CHECK_HEADER(xf1bpp.h,[AC_DEFINE(HAVE_XF1BPP, 1, [Have 1bpp support])],[])
-AC_CHECK_HEADER(xf4bpp.h,[AC_DEFINE(HAVE_XF4BPP, 1, [Have 4bpp support])],[])
-CPPFLAGS="$SAVE_CPPFLAGS"
-
 PKG_CHECK_MODULES([PCIACCESS], [pciaccess >= 0.8.0])
 XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"
 
