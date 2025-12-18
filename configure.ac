@@ -65,9 +65,5 @@ XORG_CFLAGS="$XORG_CFLAGS $PCIACCESS_CFLAGS"
 
 AC_SUBST([moduledir])
 
-AC_CONFIG_FILES([
-                Makefile
-                src/Makefile
-                man/Makefile
-])
+AC_CONFIG_FILES([Makefile src/Makefile man/Makefile])
 AC_OUTPUT
