@@ -59,10 +59,7 @@ XORG_DRIVER_CHECK_EXT(DPMSExtension, xextproto)
 
 # Obtain compiler/linker options for the driver dependencies
 PKG_CHECK_MODULES(XORG, [xorg-server >= 1.18 xproto fontsproto xf86dgaproto $REQUIRED_MODULES])
-PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1],
-                  HAVE_XEXTPROTO_71="yes"; AC_DEFINE(HAVE_XEXTPROTO_71, 1, [xextproto 7.1 available]),
-                  HAVE_XEXTPROTO_71="no")
-AM_CONDITIONAL(HAVE_XEXTPROTO_71, [ test "$HAVE_XEXTPROTO_71" = "yes" ])
+PKG_CHECK_MODULES(XEXT, [xextproto >= 7.0.99.1])
 
 # Checks for library functions
 # We don't use strlcat, strlcpy, or timingsafe_memcmp, but check to quiet

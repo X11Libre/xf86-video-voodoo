@@ -48,13 +48,7 @@
 #include "voodoo.h"
 
 #include <X11/extensions/xf86dgaproto.h>
-
-#ifdef HAVE_XEXTPROTO_71
 #include <X11/extensions/dpmsconst.h>
-#else
-#define DPMS_SERVER
-#include <X11/extensions/dpms.h>
-#endif
 
 #include "mipict.h"
 #include "dixstruct.h"
