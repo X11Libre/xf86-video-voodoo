@@ -128,7 +128,7 @@ static XF86ModuleVersionInfo voodooVersRec =
   {0,0,0,0}
 };
 
-static pointer voodooSetup(pointer module, pointer opts, int *errmaj, int *errmin)
+static void *voodooSetup(void *module, void *opts, int *errmaj, int *errmin)
 {
   static int setupDone = FALSE;
   if(errmaj)
@@ -137,7 +137,7 @@ static pointer voodooSetup(pointer module, pointer opts, int *errmaj, int *errmi
   {
     setupDone = TRUE;
     xf86AddDriver(&VOODOO, module, 0);
-    return (pointer)1;    
+    return (void*)1;
   }
   return NULL;
 }
