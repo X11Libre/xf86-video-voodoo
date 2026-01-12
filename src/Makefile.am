@@ -26,7 +26,7 @@
 AM_CFLAGS = $(BASE_CFLAGS) $(XORG_CFLAGS)
 voodoo_drv_la_LTLIBRARIES = voodoo_drv.la
 voodoo_drv_la_LDFLAGS = -module -avoid-version
-voodoo_drv_ladir = @moduledir@/drivers
+voodoo_drv_ladir = @xlibre_video_drivers_dir@
 
 voodoo_drv_la_SOURCES = \
          voodoo_dga.c \
