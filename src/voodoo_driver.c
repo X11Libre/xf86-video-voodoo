@@ -230,8 +230,7 @@ VoodooProbe(DriverPtr drv, int flags)
 		foundScreen = TRUE;
 	    else for (i = 0; i < numUsed; i++) {
 		ScrnInfoPtr pScrn = NULL;
-		EntityInfoPtr pEnt;
-		
+
 		/* Allocate a ScrnInfoRec and claim the slot */
 		if ((pScrn = xf86ConfigPciEntity(pScrn, 0, usedChips[i],
 						       VoodooPCIChipsets,NULL,
@@ -249,7 +248,6 @@ VoodooProbe(DriverPtr drv, int flags)
 		    pScrn->FreeScreen    = VoodooFreeScreen;
 		    foundScreen = TRUE;
 		}
-		pEnt = xf86GetEntityInfo(usedChips[i]);
 	    }
 	    free(usedChips);
 	}
@@ -269,7 +267,6 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   int i;
   ClockRangePtr clockRanges;
   MessageType from;
-  int maxwidth;
 
   if (flags & PROBE_DETECT)
       return FALSE;
@@ -453,13 +450,11 @@ VoodooPreInit(ScrnInfoPtr pScrn, int flags)
   {
     clockRanges->interlaceAllowed = TRUE;
     clockRanges->doubleScanAllowed = TRUE;
-    maxwidth = min(1024, pScrn->display->virtualX);
   }
   else
   {
     clockRanges->interlaceAllowed = FALSE;
     clockRanges->doubleScanAllowed = FALSE;
-    maxwidth = min(800, pScrn->display->virtualX);
   }
 
   /* Select valid modes from those available */
