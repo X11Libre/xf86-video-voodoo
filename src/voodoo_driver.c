@@ -148,6 +148,10 @@ _X_EXPORT XF86ModuleData voodooModuleData = {
   NULL
 };
 
+#ifdef XF86_MODULE_VERSION_SUFFIX
+XF86_MODULE_VERSION_SUFFIX(voodoo, VOODOO_VERSION_SUFFIX);
+#endif
+
 static Bool
 VoodooGetRec(ScrnInfoPtr pScrn)
 {
